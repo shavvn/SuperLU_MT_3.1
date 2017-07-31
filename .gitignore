@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+# ignore testing files
+TESTING/*test
+INSTALL/testdlamch
+INSTALL/testslamch
+INSTALL/testtimer
+
