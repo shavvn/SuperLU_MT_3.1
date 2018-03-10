@@ -22,10 +22,10 @@ PLAT = _OPENMP
 TMGLIB       = libtmglib.a
 SUPERLULIB   = libsuperlu_mt$(PLAT).a
 
-BLASDEF   =
-BLASLIB = ../lib/libblas$(PLAT).a
+BLASDEF   = -DUSE_VENDOR_BLAS
+BLASLIB = -L/usr/lib -lf77blas -latlas
 MATHLIB   = -lm
-MPLIB     =
+MPLIB     = 
 
 #  The archiver and the flag(s) to use when building archive (library)
 #  If your system has no ranlib, set RANLIB = echo.
@@ -39,7 +39,8 @@ PREDEFS         = -D__OPENMP
 #
 
 CC           = gcc -fopenmp
-CFLAGS       = -O3 $(PREDEFS) -DPRNTlevel=0 -DDEBUGlevel=0
+CFLAGS       = -O3 $(PREDEFS) -fPIC -DPRNTlevel=0 -DDEBUGlevel=0
+CFLAGS  += -D_LONGINT
 #
 # There are a few files that should NOT be optimized, which appear in the
 # end of SRC/Makefile, taking the flag $(NOOPTS)
@@ -48,12 +49,12 @@ NOOPTS	 = -O0
 
 ############################################################################
 FORTRAN      = gfortran -fopenmp
-FFLAGS       = 
+FFLAGS       = -O -fdefault-integer-8
 LOADER       = gcc -fopenmp
-LOADOPTS     =
+LOADOPTS     = -O
 
 #
 #  C preprocessor defs for compilation for the Fortran interface
 #  (-DNoChange, -DAdd_, -DAdd__, or -DUpCase)
 #
-CDEFS        = -DNoChange
+CDEFS        = -DAdd_
