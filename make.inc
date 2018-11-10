@@ -20,7 +20,7 @@ PLAT = _OPENMP
 #  The name of the libraries to be created/linked to
 #
 TMGLIB       = libtmglib.a
-SUPERLULIB   = libsuperlu_mt$(PLAT).a
+SUPERLULIB   = libsuperlu_mt$(PLAT).so
 
 BLASDEF   = -DUSE_VENDOR_BLAS
 BLASLIB = -L/usr/lib -lf77blas -latlas
